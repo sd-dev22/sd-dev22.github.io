@@ -3,122 +3,328 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Poésie - Votre dose quotidienne d'inspiration</title>
-    
-    <meta name="facebook-domain-verification" content="VOTRE_CODE_FACEBOOK_ICI" />
+    <title>Bama Digit | Créateur d'Applications Mobiles</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
-        /* Styles de base pour un rendu propre et élégant */
-        body {
-            font-family: 'Georgia', serif; /* Police au style poétique */
+        :root {
+            --primary-green: #1a2e1a; /* Vert profond de tes images */
+            --accent-gold: #ffcc00;   /* Or vif pour les boutons */
+            --text-light: #ffffff;
+            --card-bg: #243b24;
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            background-color: #fcf9f2; /* Couleur crème très douce */
-            color: #333;
-            text-align: center;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--primary-green);
+            color: var(--text-light);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(26, 46, 26, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .nav-socials a {
+            color: var(--text-light);
+            margin-left: 15px;
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+
+        .nav-socials a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* --- HERO SECTION --- */
+        header {
+            height: 100vh;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #2d4d2d 0%, var(--primary-green) 70%);
+            padding: 0 20px;
         }
-        header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 2rem 0;
-        }
+
         header h1 {
-            margin: 0;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            margin-bottom: 10px;
+            color: var(--accent-gold);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            max-width: 600px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            animation: bounce 2s infinite;
+        }
+
+        /* --- APP SECTION --- */
+        #apps {
+            padding: 100px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
             font-size: 2.5rem;
-            letter-spacing: 2px;
+            margin-bottom: 50px;
+            color: var(--accent-gold);
         }
-        .container {
-            flex: 1;
-            padding: 4rem 2rem;
-            max-width: 800px;
-            margin: 0 auto;
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
-        /* Style pour l'icône de l'application */
-        .app-icon {
-            width: 150px;
-            height: 150px;
-            background-color: #ffffff;
-            border-radius: 35px;
-            margin: 0 auto 2rem auto;
+
+        .app-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.4s ease;
+            border: 1px solid rgba(255, 204, 0, 0.1);
+        }
+
+        .app-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-gold);
+        }
+
+        .app-logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 22%;
+            margin-bottom: 20px;
+            object-fit: cover;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .app-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .app-card p {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .store-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.8rem;
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            gap: 8px;
+            transition: 0.3s;
         }
-        h2 {
-            font-size: 2.2rem;
-            color: #2c3e50;
-            margin-bottom: 1rem;
+
+        .btn-play {
+            background-color: var(--accent-gold);
+            color: var(--primary-green);
         }
-        p {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: #555;
-            margin-bottom: 2rem;
+
+        .btn-apple {
+            background-color: transparent;
+            border: 1px solid var(--text-light);
+            color: var(--text-light);
         }
-        /* Style du bouton Google Play */
-        .btn-playstore {
-            display: inline-block;
-            padding: 15px 35px;
-            background-color: #01875f; /* Vert classique d'Android */
-            color: white;
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-family: Arial, sans-serif;
-            font-weight: bold;
-            border-radius: 50px;
-            transition: background-color 0.3s, transform 0.2s;
-            box-shadow: 0 4px 10px rgba(1, 135, 95, 0.3);
+
+        .btn:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
         }
-        .btn-playstore:hover {
-            background-color: #016b4b;
-            transform: translateY(-2px);
-        }
+
+        /* --- CONTACT / FOOTER --- */
         footer {
-            background-color: #2c3e50;
-            color: #aaa;
-            padding: 2rem 0;
-            font-family: Arial, sans-serif;
-            font-size: 0.9rem;
+            padding: 80px 8% 40px;
+            background: #122112;
+            text-align: center;
         }
-        footer a {
-            color: #fff;
+
+        .footer-content h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+        }
+
+        .contact-mail {
+            font-size: 1.2rem;
+            color: var(--text-light);
             text-decoration: none;
+            border-bottom: 1px solid var(--accent-gold);
+            padding-bottom: 5px;
         }
-        footer a:hover {
-            text-decoration: underline;
+
+        .social-large {
+            margin: 40px 0;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .social-large a {
+            font-size: 2rem;
+            color: var(--text-light);
+            transition: 0.3s;
+        }
+
+        .social-large a:hover {
+            color: var(--accent-gold);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            margin-top: 50px;
+            font-size: 0.8rem;
+            opacity: 0.5;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        @media (max-width: 768px) {
+            .app-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
+    <nav>
+        <a href="#" class="logo">BAMA DIGIT</a>
+        <div class="nav-socials">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+        </div>
+    </nav>
+
     <header>
-        <h1>Daily Poésie</h1>
+        <h1 data-aos="zoom-in">Bama Digit</h1>
+        <p data-aos="fade-up" data-aos-delay="200">Création d'expériences mobiles uniques et performantes.</p>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
     </header>
 
-    <div class="container">
-        <img src="logo.png" alt="Logo Daily Poésie" class="app-icon">
+    <section id="apps">
+        <h2 class="section-title" data-aos="fade-up">Mes Applications</h2>
         
-        <h2>L'inspiration au quotidien</h2>
-        <p>Découvrez chaque jour de nouveaux proverbes et citations. Personnalisez vos poèmes et partagez-les facilement avec vos proches sur les réseaux sociaux.</p>
-        
-        <a href="https://play.google.com/store/apps/details?id=app.rork.daily_poesie&pcampaignid=web_share" class="btn-playstore" target="_blank">
-            Télécharger sur Google Play
-        </a>
-    </div>
+        <div class="app-grid">
+            <div class="app-card" data-aos="fade-up">
+                <img src="https://via.placeholder.com/150" alt="Logo Daily Poésie" class="app-logo"> <h3>Daily Poésie</h3>
+                <p>Recevez chaque jour une dose de sagesse et de poésie. Une application élégante pour partager des proverbes inspirants.</p>
+                <div class="store-buttons">
+                    <a href="#" class="btn btn-play"><i class="fab fa-google-play"></i> Play Store</a>
+                    <a href="#" class="btn btn-apple"><i class="fab fa-apple"></i> App Store</a>
+                </div>
+            </div>
+
+            <div class="app-card" data-aos="fade-up" data-aos-delay="100">
+                <img src="https://via.placeholder.com/150" alt="Logo Bama Market" class="app-logo">
+                <h3>Bama Market</h3>
+                <p>La marketplace C2C nouvelle génération pour le marché ouest-africain. Simple, rapide et sécurisée.</p>
+                <div class="store-buttons">
+                    <a href="#" class="btn btn-play"><i class="fab fa-google-play"></i> Play Store</a>
+                    <a href="#" class="btn btn-apple"><i class="fab fa-apple"></i> App Store</a>
+                </div>
+            </div>
+
+            <div class="app-card" data-aos="fade-up" data-aos-delay="200">
+                <img src="https://via.placeholder.com/150" alt="Logo Tontine" class="app-logo">
+                <h3>Tontine Manager</h3>
+                <p>Gérez vos tontines en toute transparence. Suivi des cotisations et des bénéficiaires en temps réel.</p>
+                <div class="store-buttons">
+                    <a href="#" class="btn btn-play"><i class="fab fa-google-play"></i> Play Store</a>
+                    <a href="#" class="btn btn-apple"><i class="fab fa-apple"></i> App Store</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <footer>
-        <p>&copy; 2026 Daily Poésie. Tous droits réservés.</p>
-        <p>
-            <a href="https://doc-hosting.flycricket.io/daily-poesie-privacy-policy/05b847b7-b1cc-4f74-bf8f-61ae629f80e2/privacy" target="_blank">Politique de Confidentialité</a>
-            | 
-            <a href="mailto:assitant.bamadigit@proton.me">Contact</a>
-        </p>
+        <div class="footer-content" data-aos="fade-up">
+            <h2>Contact</h2>
+            <a href="mailto:assistant.bamadigit@proton.me" class="contact-mail">assistant.bamadigit@proton.me</a>
+            
+            <div class="social-large">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-telegram"></i></a>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2026 Bama Digit. Tous droits réservés.</p>
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialisation des animations
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Effet de changement de couleur du nav au scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.boxShadow = "0 5px 20px rgba(0,0,0,0.5)";
+            } else {
+                nav.style.boxShadow = "none";
+            }
+        });
+    </script>
 </body>
 </html>
